@@ -65,7 +65,7 @@ abstract class :xhp:html-element extends :x:primitive {
     $buf = '<'.$this->tagName;
     foreach ($this->getAttributes() as $key => $val) {
       if ($val !== null && $val !== false) {
-        $buf .= ' ' . htmlspecialchars($key) . '="' . htmlspecialchars($val, true) . '"';
+        $buf .= ' ' . HTML::chars($key, false) . '="' . HTML::chars($val, true) . '"';
       }
     }
     return $buf;
@@ -115,7 +115,7 @@ abstract class :xhp:pseudo-singleton extends :xhp:html-element {
   children (pcdata)*;
 
   protected function escape($txt) {
-    return htmlspecialchars($txt);
+    return HTML::chars($txt);
   }
 
   protected function stringify() {
